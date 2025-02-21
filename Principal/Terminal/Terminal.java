@@ -14,6 +14,7 @@ public class Terminal implements Comandos{
 
         public Terminal(){
         }
+        
 
         public void Pwd(){
                System.out.printf("diretório: %s", System.getProperty("user.dir")); 
@@ -39,9 +40,5 @@ public class Terminal implements Comandos{
         }
 
         public void Cd(String caminho){
-                
-
-
-
         }
 }
