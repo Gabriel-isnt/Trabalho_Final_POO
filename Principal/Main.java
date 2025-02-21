@@ -27,7 +27,8 @@ public class Main{
                 Terminal cmd = new Terminal();
 
                 cmd.Pwd();
-
+                
+                //Teste 
 
                 }
 }
