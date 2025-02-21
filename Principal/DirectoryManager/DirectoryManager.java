@@ -1,5 +1,7 @@
 package DirectoryManager;
 
+import java.io.File;
+
 public class DirectoryManager{
 
 
@@ -11,10 +13,15 @@ public class DirectoryManager{
         }
 
         public static boolean isDiretorio(){
-                
+                return true;
         }
 
+        public static File diretorioAtual(){
 
+                File diretorio = new File(System.getProperty("user.dir"));
+
+                return diretorio;
+        }
 
 }
 

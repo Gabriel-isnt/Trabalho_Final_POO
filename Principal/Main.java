@@ -1,8 +1,8 @@
 package Principal;
 
-import CommandHandler.CommandHandler;
-import CommandHandler.Comando;
-import Terminal.Terminal;
+import DirectoryManager.*;
+import CommandHandler.*;
+import Terminal.*;
 
 import java.util.ArrayList;
 
@@ -27,11 +27,27 @@ public class Main{
                 CommandHandler ch = new CommandHandler(comandos);
                 Terminal cmd = new Terminal();
 
-               // testes básicos
-               String[] a = Comando.trataComando("echo mamae comando.txt"); 
-               a = Comando.trataComando("ls"); 
-               a = Comando.trataComando("curama"); 
+                // testes básicos
+                String[] a = Comando.trataComando("echo mamae comando.txt"); 
+                a = Comando.trataComando("ls"); 
+                apagar(a);
 
+                a = Comando.trataComando("curama"); 
+                apagar(a);
+                
+                a = Comando.trataComando("cd      ..");    
+                apagar(a);   
+
+                cmd.Ls(DirectoryManager.diretorioAtual());
+        }
+
+        // deletar essa função, ela só existe pra testes
+        public static void apagar(String[] algo){
+                for(int a = 0; a < algo.length; a++){
+                        System.out.printf("parte %d: %s \n", a + 1, algo[a]);
+                }
+
+                System.out.println("");
         }
 
 

@@ -6,7 +6,7 @@ interface Comandos{
 
         void Pwd();
         void Ls(File diretorio);
-        void cd(String caminho);
+        void Cd(String caminho);
 
 }
 
@@ -34,11 +34,11 @@ public class Terminal implements Comandos{
                 }                
 
                 for(File arquivo : arquivos){
-                        System.out.printf("arquivo: %s \n", arquivo);
+                        System.out.printf("arquivo: %s \n", arquivo.getName());
                 }               
         }
 
-        public void cd(String caminho){
+        public void Cd(String caminho){
                 
 
 
