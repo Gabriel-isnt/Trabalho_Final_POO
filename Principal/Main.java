@@ -32,7 +32,8 @@ public class Main{
                 a = Comando.trataComando("ls"); 
                 apagar(a);
 
-                a = Comando.trataComando("curama"); 
+                // arrumar pra esse caso aqui quando der o echo
+                a = Comando.trataComando("curama do caminosflau"); 
                 apagar(a);
                 
                 a = Comando.trataComando("cd      ..");    
