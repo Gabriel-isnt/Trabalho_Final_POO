@@ -4,28 +4,23 @@ import java.io.File;
 
 interface Comandos{
 
-        void Ls();
         void Pwd();
-        void cd(File diretorio);
+        void Ls(File diretorio);
+        void cd(String caminho);
 
 }
 
 public class Terminal implements Comandos{
 
         public Terminal(){
-
         }
 
         public void Pwd(){
                System.out.printf("diretório: %s", System.getProperty("user.dir")); 
         }
 
-        public void Ls(){
-                System.out.println("nada ainda");
-        }
-
-        public void cd(File diretorio){
-                
+        public void Ls(File diretorio){
+ 
                 if(!(diretorio.exists() && diretorio.isDirectory())){
                         System.out.println("diretório não existe");
                         return;
@@ -40,6 +35,13 @@ public class Terminal implements Comandos{
 
                 for(File arquivo : arquivos){
                         System.out.printf("arquivo: %s \n", arquivo);
-                }
+                }               
+        }
+
+        public void cd(String caminho){
+                
+
+
+
         }
 }
