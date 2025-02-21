@@ -1,7 +1,9 @@
 package Principal;
 
 import CommandHandler.CommandHandler;
+import CommandHandler.Comando;
 import Terminal.Terminal;
+
 import java.util.ArrayList;
 
 
@@ -23,12 +25,12 @@ public class Main{
                 
                 // inicialização das classes pro terminal
                 CommandHandler ch = new CommandHandler(comandos);
-
                 Terminal cmd = new Terminal();
 
-                cmd.Pwd();
-                
-                //Teste 
+               // testes básicos
+               String[] a = Comando.trataComando("echo mamae comando.txt"); 
+               a = Comando.trataComando("ls"); 
+               a = Comando.trataComando("curama"); 
 
         }
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class CommandHandler{
 
-
         private String comando;
         private ArrayList<String> comandos;
 
@@ -22,16 +21,14 @@ public class CommandHandler{
         }
 
         public void comandosAceitos(){
-                for(String comando : comandos){
+                for(String comando : comandos)
                         System.out.printf("comando: %s \n", comando);
-                }
+                
         }
 
         public boolean isComandoAceito(String comando){
                 return comandos.contains(comando);
         }
-
-        
 
 
 

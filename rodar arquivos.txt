@@ -1,11 +1,1 @@
-javac *java CommandHandler\*.java DirectoryManager\*.java FileManager\*.java Terminal\*java
-
-
-eu faço:
-
-
-guilherme faz: 
-
-terminalJava> mkdir <sei lá>
-
-
+javac *.java CommandHandler\*.java DirectoryManager\*.java FileManager\*.java Terminal\*.java
