@@ -4,26 +4,27 @@ import java.io.File;
 
 public class DirectoryManager{
 
-        // preciso terminar essa classe pra tudo funcionar como deve
-        public static void mudaDiretorio(String diretorioAtual, String novoDiretorio){
-                System.setProperty(diretorioAtual, novoDiretorio);
-        }
+        public static boolean mudaDiretorio(File novoDiretorio){
+                
+                if(!isDiretorio(novoDiretorio)){
+                        System.out.println("diretório passado não é um diretório");
+                        return false;
+                }
 
-        public static boolean isDiretorio(){
+                System.setProperty("user.dir", novoDiretorio.getAbsolutePath());
                 return true;
         }
 
-
-        // dava lendo e percebi um problema que isso pode causar
-        // vou mexer de noite nessa parte do código
-        public static File diretorioAtual(){
-
-                File diretorio = new File(System.getProperty("user.dir"));
-
-                return diretorio;
+        public static boolean isDiretorio(File diretorio){
+                return diretorio.isDirectory();
         }
 
+        public static File diretorioAtual(){
+                
+                File diretorioAtual = new File(System.getProperty("user.dir"));
 
+                return diretorioAtual;
+        }
 
 }
 

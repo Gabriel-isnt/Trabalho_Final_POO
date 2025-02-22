@@ -28,28 +28,26 @@ public class Main{
                 Terminal cmd = new Terminal();
 
                 // testes básicos
-                String[] a = Comando.trataComando("echo mamae comando.txt"); 
-                a = Comando.trataComando("ls"); 
-                apagar(a);
+                String[] partes = Comando.pegaComando("echo <caminosflau pequeno> > sem escandalo.txt");  
+                mostraPartes(partes);
 
-                // arrumar pra esse caso aqui quando der o echo
-                a = Comando.trataComando("curama do caminosflau"); 
-                apagar(a);
+                partes = Comando.pegaComando("cabelo bacana");
+                mostraPartes(partes);
+
+                partes = Comando.pegaComando("sei lá <coisa loka>");
+                mostraPartes(partes);
                 
-                a = Comando.trataComando("cd      ..");    
-                apagar(a);   
 
-                cmd.Ls(DirectoryManager.diretorioAtual());
+                  
+                // cmd.Ls(DirectoryManager.diretorioAtual());
         }
 
-        // deletar essa função, ela só existe pra testes
-        public static void apagar(String[] algo){
-                for(int a = 0; a < algo.length; a++){
-                        System.out.printf("parte %d: %s \n", a + 1, algo[a]);
+        // será apago, essa função é pra testes apenas
+        public static void mostraPartes(String[] seila){
+                for(int a = 0; a < seila.length; a++){
+                        System.out.printf("parte %d: %s\n", a + 1, seila[a]);
                 }
 
                 System.out.println("");
         }
-
-
 }
