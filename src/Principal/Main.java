@@ -1,6 +1,5 @@
 package Principal;
 
-
 import Terminal.Cmd;
 import CommandHandler.Comando;
 

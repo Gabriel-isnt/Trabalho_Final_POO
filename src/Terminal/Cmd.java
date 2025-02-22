@@ -39,10 +39,27 @@ public class Cmd implements Comandos{
         }
 
         public void Cd(String caminho){
+
+                if(caminho == null || caminho.isEmpty()){
+                        return;
+                }
                 
-                // if()
+                if(caminho.equals("..")){
+                        String diretorioPai = GerenciaDiretorio.diretorioAtual().getParent();
+                                
+                        if(diretorioPai == null)
+                                return;
 
+                        File diretorioAtual = new File(diretorioPai);
 
+                        GerenciaDiretorio.mudaDiretorio(diretorioAtual);
 
+                        
+                // temrinar depois isso aqui
+                } else if(){
+                        File diretorioNovo  = new File(GerenciaDiretorio.diretorioAtual(), caminho); 
+                        GerenciaDiretorio.mudaDiretorio(diretorioNovo);
+
+                }
         }
 }
