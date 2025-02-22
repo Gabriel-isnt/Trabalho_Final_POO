@@ -1,7 +1,7 @@
 package Principal;
 
 import Terminal.Cmd;
-import CommandHandler.Comando;
+import src.CommandHandler.Comando;
 
 import java.util.ArrayList;
 

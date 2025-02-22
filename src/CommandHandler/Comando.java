@@ -1,4 +1,4 @@
-package CommandHandler;
+package src.CommandHandler;
 
 public class Comando{
 
