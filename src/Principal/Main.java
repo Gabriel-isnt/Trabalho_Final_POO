@@ -1,8 +1,7 @@
 package Principal;
 
-import DirectoryManager.*;
-import CommandHandler.*;
-import Terminal.*;
+import Terminal.Cmd;
+import CommandHandler.Comando;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,6 @@ public class Main{
                 comandos.add("exit");
                 
                 // inicialização das classes pro terminal
-                CommandHandler ch = new CommandHandler(comandos);
                 Cmd cmd = new Cmd();
 
                 // testes básicos
