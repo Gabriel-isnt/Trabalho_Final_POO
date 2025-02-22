@@ -1,11 +1,13 @@
 package Terminal;
 
+import DirectoryManager.DirectoryManager;
+
 import java.io.File;
 
 interface Comandos{
 
         void Pwd();
-        void Ls(File diretorio);
+        void Ls();
         void Cd(String caminho);
 
 }
@@ -20,12 +22,9 @@ public class Terminal implements Comandos{
                System.out.printf("diretório: %s", System.getProperty("user.dir")); 
         }
 
-        public void Ls(File diretorio){
- 
-                if(!(diretorio.exists() && diretorio.isDirectory())){
-                        System.out.println("diretório não existe");
-                        return;
-                }                
+        public void Ls(){
+
+                File diretorio = DirectoryManager.diretorioAtual();
 
                 File[] arquivos = diretorio.listFiles();
 
@@ -40,5 +39,10 @@ public class Terminal implements Comandos{
         }
 
         public void Cd(String caminho){
+                
+                // if()
+
+
+
         }
 }
