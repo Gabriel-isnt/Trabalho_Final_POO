@@ -1,8 +1,8 @@
-package src.CommandHandler;
+package CommandHandler;
 
 public class Comando{
 
-        public static String trataComando(String comando){
+        private static String trataComando(String comando){
                
                 if(comando == null || comando.trim().isEmpty()){
                         return null;

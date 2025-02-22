@@ -4,12 +4,14 @@ import Terminal.Cmd;
 import src.CommandHandler.Comando;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Main{
+	
         public static void main(String[] args){
 
-                // só pra ter um começo, sujeito a guincho (mudança)
+                // Lista de comandos aceitos.
                 ArrayList<String> comandos = new ArrayList<>();
                 comandos.add("pwd");
                 comandos.add("ls");
@@ -22,30 +24,25 @@ public class Main{
                 comandos.add("history");
                 comandos.add("exit");
                 
-                // inicialização das classes pro terminal
+                // inicialização das classes e scanner pro terminal.
                 Cmd cmd = new Cmd();
-
-                // testes básicos
-                String[] partes = Comando.pegaComando("echo <caminosflau pequeno> > sem escandalo.txt");  
-                mostraPartes(partes);
-
-                partes = Comando.pegaComando("cabelo bacana");
-                mostraPartes(partes);
-
-                partes = Comando.pegaComando("sei lá <coisa loka>");
-                mostraPartes(partes);
+                Scanner sc = new Scanner(System.in);
+                String entrada = null;
                 
+                String[] entradaSeparada = new String[3];
+                
+                // Corpo
+                do {
+                	
+                	System.out.printf("JavaComand>>");
+                	
+                	entrada = sc.nextLine();
+                	entradaSeparada = Comando.pegaComando(entrada);
+                	
+                	
+                	
+                	
+                }while(entrada != "exit");
 
-                  
-                // cmd.Ls(DirectoryManager.diretorioAtual());
-        }
-
-        // será apago, essa função é pra testes apenas
-        public static void mostraPartes(String[] seila){
-                for(int a = 0; a < seila.length; a++){
-                        System.out.printf("parte %d: %s\n", a + 1, seila[a]);
-                }
-
-                System.out.println("");
         }
 }

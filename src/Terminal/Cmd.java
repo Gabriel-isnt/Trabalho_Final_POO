@@ -2,6 +2,8 @@ package Terminal;
 
 import DirectoryManager.GerenciaDiretorio;
 
+import FileManager.GerenciarArquivos;
+
 import java.io.File;
 
 interface Comandos{
@@ -9,6 +11,9 @@ interface Comandos{
         void Pwd();
         void Ls();
         void Cd(String caminho);
+        void Mkdir(String nome);
+        void Touch(String nome);
+        void Cat(String nome);
 
 }
 
@@ -16,6 +21,12 @@ public class Cmd implements Comandos{
 
         public Cmd(){
         }
+        
+        
+        public static void executarComando(String comando) {
+        	
+        }
+
         
 
         public void Pwd(){
@@ -61,5 +72,33 @@ public class Cmd implements Comandos{
                         GerenciaDiretorio.mudaDiretorio(diretorioNovo);
 
                 }
+
         }
+        
+        public void Mkdir(String nome) {
+        	
+        	File novoDiretorio = new File (nome);
+        	
+            if (novoDiretorio.exists()) {
+                System.out.println("Erro: O diretorio ja existe!");
+                return;
+            }
+        	
+        	if(novoDiretorio.mkdir()) {
+        		System.out.println("Novo diretorio criado com sucesso!");
+        	}else {
+        		System.out.println("Erro ao criar diretorio!");
+        	}
+        }
+        
+        public void Touch(String nome) {
+        	
+        	GerenciarArquivos.criarArquivo(nome);
+        }
+
+
+		public void Cat(String nome) {
+			
+			GerenciarArquivos.lerArquivo(nome);
+		}
 }
