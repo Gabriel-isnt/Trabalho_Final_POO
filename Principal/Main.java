@@ -25,7 +25,7 @@ public class Main{
                 
                 // inicialização das classes pro terminal
                 CommandHandler ch = new CommandHandler(comandos);
-                Terminal cmd = new Terminal();
+                Cmd cmd = new Cmd();
 
                 // testes básicos
                 String[] partes = Comando.pegaComando("echo <caminosflau pequeno> > sem escandalo.txt");  
