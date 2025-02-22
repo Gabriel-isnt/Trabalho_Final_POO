@@ -14,7 +14,7 @@ interface Comandos{
 
 public class Cmd implements Comandos{
 
-        public Terminal(){
+        public Cmd(){
         }
         
 
