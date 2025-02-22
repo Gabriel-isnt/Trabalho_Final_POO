@@ -2,7 +2,7 @@ package DirectoryManager;
 
 import java.io.File;
 
-public class DirectoryManager{
+public class gerenciaDiretorio{
 
         public static boolean mudaDiretorio(File novoDiretorio){
                 
