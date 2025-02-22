@@ -1,6 +1,6 @@
 package Terminal;
 
-import DirectoryManager.gerenciaDiretorio;
+import DirectoryManager.GerenciaDiretorio;
 
 import java.io.File;
 
@@ -24,7 +24,7 @@ public class Cmd implements Comandos{
 
         public void Ls(){
 
-                File diretorio = gerenciaDiretorio.diretorioAtual();
+                File diretorio = GerenciaDiretorio.diretorioAtual();
 
                 File[] arquivos = diretorio.listFiles();
 
