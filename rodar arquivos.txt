@@ -1,1 +1,1 @@
-javac *.java CommandHandler\*.java DirectoryManager\*.java FileManager\*.java Terminal\*.java
+javac Principal\*.java CommandHandler\*.java DirectoryManager\*.java FileManager\*.java Terminal\*.java
