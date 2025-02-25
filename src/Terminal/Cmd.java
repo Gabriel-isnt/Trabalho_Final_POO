@@ -5,34 +5,18 @@ import FileManager.GerenciarArquivos;
 
 import java.io.File;
 
-interface Comandos{
-
-        void Pwd();
-        void Ls();
-        void Cd(String caminho);
-        void Mkdir(String nome);
-        void Touch(String nome);
-        void Cat(String nome);
-
-}
-
-public class Cmd implements Comandos{
+public class Cmd {
 
         public Cmd(){
         }
-        
 
-        // ?        
-        public static void executarComando(String comando) {
-        	
+
+        public static Runnable Pwd(){
+               System.out.printf("diretório: %s", System.getProperty("user.dir"));
+			return null; 
         }
 
-
-        public void Pwd(){
-               System.out.printf("diretório: %s", System.getProperty("user.dir")); 
-        }
-
-        public void Ls(){
+        public static Runnable Ls(){
 
                 File diretorio = GerenciaDiretorio.diretorioAtual();
 
@@ -40,19 +24,20 @@ public class Cmd implements Comandos{
 
                 if(arquivos == null){
                         System.out.println("nenhum arquivo encontrado no diretório");
-                        return;
+                        return null;
                 }                
 
                 for(File arquivo : arquivos){
                         System.out.printf("arquivo: %s \n", arquivo.getName());
-                }               
+                }
+				return null;               
         }
 
-        public void Cd(String caminho) {
+        public static Runnable Cd(String caminho) {
 
                 // Verifica se o caminho é nulo ou vazio
                 if (caminho == null || caminho.isEmpty()) {
-                        return;
+                        return null;
                 }
 
                 // Pega o separador de arquivos do sistema operacional atual
@@ -65,7 +50,7 @@ public class Cmd implements Comandos{
                         
                         if (diretorioPai == null) {
                                 System.out.println("Já está no diretório raiz!");
-                                return;
+                                return null;
                         }
 
                         File diretorioAtual = new File(diretorioPai);
@@ -107,15 +92,16 @@ public class Cmd implements Comandos{
                                 System.out.printf("Erro: Diretório '%s' não existe ou não é um diretório!", caminho);
                         }
                 }
+				return null;
         }
         
-        public void Mkdir(String nome) {
+        public static Runnable Mkdir(String nome) {
         	
         	File novoDiretorio = new File (nome);
         	
                 if (novoDiretorio.exists()) {
                         System.out.println("Erro: O diretorio ja existe!");
-                        return;
+                        return null;
                 }
         	
         	if(novoDiretorio.mkdir()) {
@@ -124,16 +110,34 @@ public class Cmd implements Comandos{
         	}else {
         		System.out.println("Erro ao criar diretorio!");
         	}
+			return null;
         }
         
-        public void Touch(String nome) {
+        public static Runnable Touch(String nome) {
         	
         	GerenciarArquivos.criarArquivo(nome);
+			return null;
         }
+        
+    public static Runnable Rm() {
+		return null;
+    	
+    }
 
 
-	public void Cat(String nome) {
+	public static Runnable Cat(String nome) {
 
                 GerenciarArquivos.lerArquivo(nome);
+				return null;
         }
+	
+    public static Runnable Echo() {
+		return null;
+    	
+    }
+    
+    public static Runnable History() {
+		return null;
+    	
+    }
 }

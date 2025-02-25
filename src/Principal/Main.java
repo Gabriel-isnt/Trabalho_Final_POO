@@ -4,31 +4,31 @@ import Terminal.Cmd;
 import CommandHandler.Comando;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 
 public class Main{
 	
+	    private static Map<String, Runnable> comandos;
+	
         public static void main(String[] args){
 
                 // Lista de comandos aceitos.
-                ArrayList<String> comandos = new ArrayList<>();
-                comandos.add("pwd");
-                comandos.add("ls");
-                comandos.add("cd");
-                comandos.add("mkdir");
-                comandos.add("touch");
-                comandos.add("rm");
-                comandos.add("cat");
-                comandos.add("echo");
-                comandos.add("history");
-                comandos.add("exit");
+                comandos.put("pwd", Cmd.Pwd());
+                comandos.put("ls", Cmd.Ls());
+                comandos.put("cd", Cmd.Cd(null));
+                comandos.put("mkdir", Cmd.Mkdir(null));
+                comandos.put("touch", Cmd.Touch(null));
+                comandos.put("rm", Cmd.Rm());
+                comandos.put("cat", Cmd.Cat(null));
+                comandos.put("echo", Cmd.Echo());
+                comandos.put("history", Cmd.History());
                 
                 // inicialização das classes e scanner pro terminal.
                 Cmd cmd = new Cmd();
                 Scanner sc = new Scanner(System.in);
-                String entrada = null;
-                
+                String entrada;
                 String[] entradaSeparada = new String[3];
                 
                 // Corpo
@@ -38,6 +38,8 @@ public class Main{
                 	
                 	entrada = sc.nextLine();
                 	entradaSeparada = Comando.pegaComando(entrada);
+                	
+                	
                 	
                 	
                 	
