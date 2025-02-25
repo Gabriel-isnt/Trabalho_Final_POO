@@ -1,7 +1,6 @@
 package Terminal;
 
 import DirectoryManager.GerenciaDiretorio;
-
 import FileManager.GerenciarArquivos;
 
 import java.io.File;
@@ -22,12 +21,12 @@ public class Cmd implements Comandos{
         public Cmd(){
         }
         
-        
+
+        // ?        
         public static void executarComando(String comando) {
         	
         }
 
-        
 
         public void Pwd(){
                System.out.printf("diretório: %s", System.getProperty("user.dir")); 
@@ -54,38 +53,81 @@ public class Cmd implements Comandos{
                 if(caminho == null || caminho.isEmpty()){
                         return;
                 }
-                
-                if(caminho.equals("..")){
-                        String diretorioPai = GerenciaDiretorio.diretorioAtual().getParent();
-                                
-                        if(diretorioPai == null)
-                                return;
+        }
 
-                        File diretorioAtual = new File(diretorioPai);
+        public void Cd(String caminho) {
 
-                        GerenciaDiretorio.mudaDiretorio(diretorioAtual);
-
-                        
-                // temrinar depois isso aqui
-                } else if(){
-                        File diretorioNovo  = new File(GerenciaDiretorio.diretorioAtual(), caminho); 
-                        GerenciaDiretorio.mudaDiretorio(diretorioNovo);
-
+                // Verifica se o caminho é nulo ou vazio
+                if (caminho == null || caminho.isEmpty()) {
+                        return;
                 }
 
+                // Pega o separador de arquivos do sistema operacional atual
+                String separador = File.separator;
+
+                // Caso especial: volta ao diretório pai
+                if (caminho.equals("..")) {
+
+                        String diretorioPai = GerenciaDiretorio.diretorioAtual().getParent();
+                        
+                        if (diretorioPai == null) {
+                                System.out.println("Já está no diretório raiz!");
+                                return;
+                        }
+
+                        File diretorioAtual = new File(diretorioPai);
+                        
+                        if (diretorioAtual.exists() && diretorioAtual.isDirectory()) {
+                                GerenciaDiretorio.mudaDiretorio(diretorioAtual);
+                        
+                        } else {
+                                System.out.println("Erro: Diretório pai inválido!");
+                        }
+                }
+        
+                // Caminho absoluto ou relativo
+                else {
+                        File diretorioNovo;
+
+                        // Verifica se é um caminho absoluto
+                        boolean ehAbsoluto = false;
+                        if (caminho.startsWith(separador)) { 
+                                ehAbsoluto = true;
+                        
+                        //     vendo se pelo menos é C:     vendo se começa com uma letra            vendo se depois da letra é : 
+                        } else if (caminho.length() >= 2 && Character.isLetter(caminho.charAt(0)) && caminho.charAt(1) == ':') { 
+                                ehAbsoluto = true;
+                        }
+
+                        if (ehAbsoluto) {
+                                diretorioNovo = new File(caminho);
+                        
+                        } else {
+                                diretorioNovo = new File(GerenciaDiretorio.diretorioAtual(), caminho);
+                        }
+
+                        // Verifica se o diretório existe e é válido antes de mudar
+                        if (diretorioNovo.exists() && diretorioNovo.isDirectory()) {
+                                GerenciaDiretorio.mudaDiretorio(diretorioNovo);
+                        
+                        } else {
+                                System.out.printf("Erro: Diretório '%s' não existe ou não é um diretório!", caminho);
+                        }
+                }
         }
         
         public void Mkdir(String nome) {
         	
         	File novoDiretorio = new File (nome);
         	
-            if (novoDiretorio.exists()) {
-                System.out.println("Erro: O diretorio ja existe!");
-                return;
-            }
+                if (novoDiretorio.exists()) {
+                        System.out.println("Erro: O diretorio ja existe!");
+                        return;
+                }
         	
         	if(novoDiretorio.mkdir()) {
         		System.out.println("Novo diretorio criado com sucesso!");
+                        
         	}else {
         		System.out.println("Erro ao criar diretorio!");
         	}
@@ -97,8 +139,8 @@ public class Cmd implements Comandos{
         }
 
 
-		public void Cat(String nome) {
-			
-			GerenciarArquivos.lerArquivo(nome);
-		}
+	public void Cat(String nome) {
+
+                GerenciarArquivos.lerArquivo(nome);
+        }
 }
