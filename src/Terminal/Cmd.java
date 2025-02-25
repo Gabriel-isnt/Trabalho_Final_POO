@@ -48,13 +48,6 @@ public class Cmd implements Comandos{
                 }               
         }
 
-        public void Cd(String caminho){
-
-                if(caminho == null || caminho.isEmpty()){
-                        return;
-                }
-        }
-
         public void Cd(String caminho) {
 
                 // Verifica se o caminho é nulo ou vazio
@@ -127,7 +120,7 @@ public class Cmd implements Comandos{
         	
         	if(novoDiretorio.mkdir()) {
         		System.out.println("Novo diretorio criado com sucesso!");
-                        
+
         	}else {
         		System.out.println("Erro ao criar diretorio!");
         	}

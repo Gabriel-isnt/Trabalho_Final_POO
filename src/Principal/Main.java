@@ -1,7 +1,7 @@
 package Principal;
 
 import Terminal.Cmd;
-import src.CommandHandler.Comando;
+import CommandHandler.Comando;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,7 +42,7 @@ public class Main{
                 	
                 	
                 	
-                }while(entrada != "exit");
+                }while(!entrada.equals("exit"));
 
         }
 }
