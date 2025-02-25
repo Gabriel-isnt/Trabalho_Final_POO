@@ -3,7 +3,6 @@ package Principal;
 import Terminal.Cmd;
 import CommandHandler.Comando;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -40,7 +39,9 @@ public class Main{
                 	entradaSeparada = Comando.pegaComando(entrada);
                 	
                 	
-                	
+                	for(Map<String, Runnable> comandos : comandos) {
+                		
+                	}
                 	
                 	
                 	
