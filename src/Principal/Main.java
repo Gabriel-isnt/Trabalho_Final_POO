@@ -1,10 +1,6 @@
 package Principal;
 
 import Terminal.Cmd;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/Gabriel-isnt/Trabalho_Final_POO.git
 import CommandHandler.Comando;
 
 import java.util.ArrayList;
