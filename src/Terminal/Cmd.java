@@ -1,15 +1,23 @@
 package Terminal;
 
 import DirectoryManager.GerenciaDiretorio;
+
 import FileManager.GerenciarArquivos;
 
 import java.io.File;
 
-public class Cmd {
+import CommandHandler.Comando;
 
+public class Cmd {
+	
+		private static String entrada;
+	
         public Cmd(){
         }
-
+        
+        public static void armazenamento(String nome) {
+        	entrada = nome;
+        }
 
         public static Runnable Pwd(){
                System.out.printf("diretório: %s", System.getProperty("user.dir"));
@@ -33,7 +41,10 @@ public class Cmd {
 				return null;               
         }
 
-        public static Runnable Cd(String caminho) {
+        public static Runnable Cd() {
+        	
+        		String[] separacao = Comando.pegaComando(entrada);
+        		String caminho = separacao[1];
 
                 // Verifica se o caminho é nulo ou vazio
                 if (caminho == null || caminho.isEmpty()) {
@@ -95,7 +106,10 @@ public class Cmd {
 				return null;
         }
         
-        public static Runnable Mkdir(String nome) {
+        public static Runnable Mkdir() {
+        	
+        	String[] separacao = Comando.pegaComando(entrada);
+    		String nome = separacao[1];
         	
         	File novoDiretorio = new File (nome);
         	
@@ -113,25 +127,37 @@ public class Cmd {
 			return null;
         }
         
-        public static Runnable Touch(String nome) {
+        public static Runnable Touch() {
+        	
+        	String[] separacao = Comando.pegaComando(entrada);
+    		String nome = separacao[1];
         	
         	GerenciarArquivos.criarArquivo(nome);
 			return null;
         }
         
     public static Runnable Rm() {
+    	
+    	String[] separacao = Comando.pegaComando(entrada);
+		String nome = separacao[1];
 		return null;
     	
     }
 
 
-	public static Runnable Cat(String nome) {
-
+	public static Runnable Cat() {
+				
+				String[] separacao = Comando.pegaComando(entrada);
+				String nome = separacao[1];
                 GerenciarArquivos.lerArquivo(nome);
 				return null;
         }
 	
     public static Runnable Echo() {
+    	
+    	String[] separacao = Comando.pegaComando(entrada);
+		String texto = separacao[1];
+		String nome = separacao[2];
 		return null;
     	
     }
