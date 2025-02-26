@@ -132,6 +132,9 @@ public class Cmd implements Comandos{
         }
 
 
+        
+
+
 	public void Cat(String nome) {
 
                 GerenciarArquivos.lerArquivo(nome);
