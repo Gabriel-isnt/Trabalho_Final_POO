@@ -12,6 +12,7 @@ interface Comandos{
         void Cd(String caminho);
         void Mkdir(String nome);
         void Touch(String nome);
+        void Rm(String nome);
         void Cat(String nome);
 
 }
@@ -131,6 +132,9 @@ public class Cmd implements Comandos{
         	GerenciarArquivos.criarArquivo(nome);
         }
 
+        public void Rm(String nome){
+                
+        }
 
         
 
