@@ -145,12 +145,15 @@ public class Cmd {
     }
 
 
+
 	public static Runnable Cat() {
 				
 				String[] separacao = Comando.pegaComando(entrada);
 				String nome = separacao[1];
-                GerenciarArquivos.lerArquivo(nome);
+				
+				GerenciarArquivos.lerArquivo(nome);
 				return null;
+
         }
 	
     public static Runnable Echo() {
