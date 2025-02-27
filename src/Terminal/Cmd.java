@@ -10,7 +10,7 @@ import CommandHandler.Comando;
 
 public class Cmd {
 	
-		private static String entrada;
+	private static String entrada;
 	
         public Cmd(){
         }
@@ -124,8 +124,9 @@ public class Cmd {
 
         	}else {
         		System.out.println("Erro ao criar diretorio!");
-			return null;
         	}
+
+                return null;
         }
         
         public static Runnable Touch() {
@@ -142,7 +143,7 @@ public class Cmd {
                 String[] separacao = Comando.pegaComando(entrada);
                 String nome = separacao[1];
                 
-                if(nome.isEmpty() || nome == null){
+                if(nome == null || nome.isEmpty()){
                         System.out.println("nenhum diretório ou arquivo passado");
                         return null;
                 }
@@ -154,16 +155,24 @@ public class Cmd {
                         return null;
                 }
 
+
                 if(item.isFile()){
-                        item.delete();
-                
+
+                        if(!item.delete()){
+                                System.out.println("Erro ao tentar deletar arquivo");
+                                return null;
+                        }
+        
                 } else if(item.isDirectory()){
                         RmDiretorio(item);
-                
+
+                        if(item.exists()){  // vai que ainda existe o diretório apagado
+                                System.out.println("Erro ao tentar apagar o diretório");
+                        }
+        
                 }
 
                 return null;
-
         }
 
         private static void RmDiretorio(File diretorio){
@@ -171,15 +180,21 @@ public class Cmd {
                 File[] itens = diretorio.listFiles();
 
                 if(itens == null){
-                        diretorio.delete();
+                        
+                        if(!diretorio.delete()){
+                                System.out.println("não foi possível deletar o diretório atual");
+                        }
                         return;
                 }
-
+                
                 // chamo recursivamente o mesmo método pra ir limpando os diretórios
                 for(File item : itens){
 
                         if(item.isFile()){
-                                item.delete();
+                                if(!item.delete()){
+                                        System.out.println("erro ao tentar deletar arquivo do diretório");
+                                        return;
+                                }
                         
                         } else if(item.isDirectory()){
                                 RmDiretorio(item);
@@ -187,7 +202,9 @@ public class Cmd {
                 }
 
                 // deleto o diretório passado originalmente
-                diretorio.delete();
+                if(!diretorio.delete()){
+                        System.out.println("Erro ao tentar deletar o diretório atual");
+                }
         }
 
 
