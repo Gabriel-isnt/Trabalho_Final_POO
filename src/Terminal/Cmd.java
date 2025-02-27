@@ -43,8 +43,8 @@ public class Cmd {
 
         public static Runnable Cd() {
         	
-        		String[] separacao = Comando.pegaComando(entrada);
-        		String caminho = separacao[1];
+                String[] separacao = Comando.pegaComando(entrada);
+                String caminho = separacao[1];
 
                 // Verifica se o caminho é nulo ou vazio
                 if (caminho == null || caminho.isEmpty()) {
@@ -103,7 +103,8 @@ public class Cmd {
                                 System.out.printf("Erro: Diretório '%s' não existe ou não é um diretório!", caminho);
                         }
                 }
-				return null;
+                
+                return null;
         }
         
         public static Runnable Mkdir() {
@@ -123,8 +124,8 @@ public class Cmd {
 
         	}else {
         		System.out.println("Erro ao criar diretorio!");
-        	}
 			return null;
+        	}
         }
         
         public static Runnable Touch() {
@@ -133,26 +134,71 @@ public class Cmd {
     		String nome = separacao[1];
         	
         	GerenciarArquivos.criarArquivo(nome);
-			return null;
+                return null;
         }
-        
-    public static Runnable Rm() {
-    	
-    	String[] separacao = Comando.pegaComando(entrada);
-		String nome = separacao[1];
-		return null;
-    	
-    }
+                
+        public static Runnable Rm() {
+                
+                String[] separacao = Comando.pegaComando(entrada);
+                String nome = separacao[1];
+                
+                if(nome.isEmpty() || nome == null){
+                        System.out.println("nenhum diretório ou arquivo passado");
+                        return null;
+                }
+
+                File item = new File(nome);
+
+                if(!item.exists()){
+                        System.out.println("diretório ou arquivo não existe");
+                        return null;
+                }
+
+                if(item.isFile()){
+                        item.delete();
+                
+                } else if(item.isDirectory()){
+                        RmDiretorio(item);
+                
+                }
+
+                return null;
+
+        }
+
+        private static void RmDiretorio(File diretorio){
+
+                File[] itens = diretorio.listFiles();
+
+                if(itens == null){
+                        diretorio.delete();
+                        return;
+                }
+
+                // chamo recursivamente o mesmo método pra ir limpando os diretórios
+                for(File item : itens){
+
+                        if(item.isFile()){
+                                item.delete();
+                        
+                        } else if(item.isDirectory()){
+                                RmDiretorio(item);
+                        }
+                }
+
+                // deleto o diretório passado originalmente
+                diretorio.delete();
+        }
 
 
 
 	public static Runnable Cat() {
 				
-				String[] separacao = Comando.pegaComando(entrada);
-				String nome = separacao[1];
-				
-				GerenciarArquivos.lerArquivo(nome);
-				return null;
+                String[] separacao = Comando.pegaComando(entrada);
+                String nome = separacao[1];
+                
+                GerenciarArquivos.lerArquivo(nome);
+                return null;
 
         }
 	
