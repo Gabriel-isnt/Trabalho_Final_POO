@@ -33,7 +33,6 @@ public class Main{
                 
                 // Corpo
                 do {
-                	
                 	System.out.printf("\nJavaComand>>");
                 	
                 	entrada = sc.nextLine();
@@ -48,10 +47,7 @@ public class Main{
                 		if(chave.equals(comandoAtual[0])) {
                 			valor.run();
                 		}
-                		
                 	});
-                	
-                	
                 	
                 }while(!entrada.equals("exit"));
 

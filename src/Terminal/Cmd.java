@@ -20,8 +20,8 @@ public class Cmd {
         }
 
         public static Runnable Pwd(){
-               System.out.printf("diretório: %s", System.getProperty("user.dir"));
-			return null; 
+                System.out.printf("diretório: %s", System.getProperty("user.dir"));
+	        return null; 
         }
 
         public static Runnable Ls(){
@@ -68,9 +68,11 @@ public class Cmd {
                         
                         if (diretorioAtual.exists() && diretorioAtual.isDirectory()) {
                                 GerenciaDiretorio.mudaDiretorio(diretorioAtual);
+                                return null;
                         
                         } else {
                                 System.out.println("Erro: Diretório pai inválido!");
+                                return null;
                         }
                 }
         
