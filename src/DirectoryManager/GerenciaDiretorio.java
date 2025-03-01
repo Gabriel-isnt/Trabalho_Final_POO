@@ -7,7 +7,7 @@ public class GerenciaDiretorio{
         public static boolean mudaDiretorio(File novoDiretorio){
                 
                 if(!isDiretorio(novoDiretorio)){
-                        System.out.println("diretório passado não é um diretório");
+                        System.out.println("\nDiretório passado não é um diretório");
                         return false;
                 }
 

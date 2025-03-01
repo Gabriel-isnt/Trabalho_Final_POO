@@ -22,7 +22,7 @@ public class CommandHandler{
 
         public void comandosAceitos(){
                 for(String comando : comandos)
-                        System.out.printf("comando: %s \n", comando);
+                        System.out.printf("\nComando: %s", comando);
                 
         }
 

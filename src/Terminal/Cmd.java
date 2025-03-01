@@ -5,21 +5,25 @@ import FileManager.GerenciarArquivos;
 import CommandHandler.Comando;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Cmd {
 	
 	private static String entrada;
+	private static List<String> historico = new ArrayList<>();
 	
         public Cmd(){
         }
         
         public static void armazenamento(String nome) {
         	entrada = nome;
+        	historico.add(nome);
         }
 
         public static Runnable Pwd(){
-                System.out.printf("diretório: %s", System.getProperty("user.dir"));
+                System.out.printf("\nDiretório: %s", System.getProperty("user.dir"));
 	        return null; 
         }
 
@@ -30,12 +34,12 @@ public class Cmd {
                 File[] arquivos = diretorio.listFiles();
 
                 if(arquivos == null){
-                        System.out.println("nenhum arquivo encontrado no diretório");
+                        System.out.println("\nNenhum arquivo encontrado no diretório");
                         return null;
                 }                
 
                 for(File arquivo : arquivos){
-                        System.out.printf("arquivo: %s \n", arquivo.getName());
+                        System.out.printf("\nArquivo: %s ", arquivo.getName());
                 }
 				return null;               
         }
@@ -59,7 +63,7 @@ public class Cmd {
                         String diretorioPai = GerenciaDiretorio.diretorioAtual().getParent();
                         
                         if (diretorioPai == null) {
-                                System.out.println("Já está no diretório raiz!");
+                                System.out.println("\nJá está no diretório raiz!");
                                 return null;
                         }
 
@@ -70,7 +74,7 @@ public class Cmd {
                                 return null;
                         
                         } else {
-                                System.out.println("Erro: Diretório pai inválido!");
+                                System.out.println("\nErro: Diretório pai inválido!");
                                 return null;
                         }
                 }
@@ -101,7 +105,7 @@ public class Cmd {
                                 GerenciaDiretorio.mudaDiretorio(diretorioNovo);
                         
                         } else {
-                                System.out.printf("Erro: Diretório '%s' não existe ou não é um diretório!", caminho);
+                                System.out.printf("\nErro: Diretório '%s' não existe ou não é um diretório!", caminho);
                         }
                 }
                 
@@ -116,15 +120,15 @@ public class Cmd {
         	File novoDiretorio = new File (nome);
         	
                 if (novoDiretorio.exists()) {
-                        System.out.println("Erro: O diretorio ja existe!");
+                        System.out.println("\nErro: O diretorio ja existe!");
                         return null;
                 }
         	
         	if(novoDiretorio.mkdir()) {
-        		System.out.println("Novo diretorio criado com sucesso!");
+        		System.out.println("\nNovo diretorio criado com sucesso!");
 
         	}else {
-        		System.out.println("Erro ao criar diretorio!");
+        		System.out.println("\nErro ao criar diretorio!");
         	}
 
                 return null;
@@ -145,14 +149,14 @@ public class Cmd {
                 String nome = separacao[1];
                 
                 if(nome == null || nome.isEmpty()){
-                        System.out.println("nenhum diretório ou arquivo passado");
+                        System.out.println("\nNenhum diretório ou arquivo passado");
                         return null;
                 }
 
                 File item = new File(nome);
 
                 if(!item.exists()){
-                        System.out.println("diretório ou arquivo não existe");
+                        System.out.println("\nNiretório ou arquivo não existe");
                         return null;
                 }
 
@@ -160,7 +164,7 @@ public class Cmd {
                 if(item.isFile()){
 
                         if(!item.delete()){
-                                System.out.println("Erro ao tentar deletar arquivo");
+                                System.out.println("\nErro ao tentar deletar arquivo");
                                 return null;
                         }
         
@@ -168,7 +172,7 @@ public class Cmd {
                         RmDiretorio(item);
 
                         if(item.exists()){  // vai que ainda existe o diretório apagado
-                                System.out.println("Erro ao tentar apagar o diretório");
+                                System.out.println("\nErro ao tentar apagar o diretório");
                         }
         
                 }
@@ -183,7 +187,7 @@ public class Cmd {
                 if(itens == null){
                         
                         if(!diretorio.delete()){
-                                System.out.println("não foi possível deletar o diretório atual");
+                                System.out.println("\nNão foi possível deletar o diretório atual");
                         }
                         return;
                 }
@@ -193,7 +197,7 @@ public class Cmd {
 
                         if(item.isFile()){
                                 if(!item.delete()){
-                                        System.out.println("erro ao tentar deletar arquivo do diretório");
+                                        System.out.println("\nErro ao tentar deletar arquivo do diretório");
                                         return;
                                 }
                         
@@ -204,7 +208,7 @@ public class Cmd {
 
                 // deleto o diretório passado originalmente
                 if(!diretorio.delete()){
-                        System.out.println("Erro ao tentar deletar o diretório atual");
+                        System.out.println("\nErro ao tentar deletar o diretório atual");
                 }
         }
 
@@ -240,8 +244,8 @@ public class Cmd {
 
         }
     
-        public static Runnable History() {
-                return null;
+    public static Runnable History() {
+		return null;
     	
         }
 }

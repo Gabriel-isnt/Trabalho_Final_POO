@@ -14,13 +14,13 @@ public class GerenciarArquivos{
 		
                 try {
                         if (arquivo.createNewFile()) {
-                                System.out.println("Arquivo criado com sucesso!");
+                                System.out.println("\nArquivo criado com sucesso!");
                         } else {
-                                System.out.println("O arquivo ja existe.");
+                                System.out.println("\nO arquivo ja existe.");
                         }
                         
                 } catch (IOException erro) {
-                        System.out.println("Erro ao criar o arquivo: " + erro.getMessage());
+                        System.out.println("\nErro ao criar o arquivo: " + erro.getMessage());
                 }
 	}
 	
@@ -30,7 +30,7 @@ public class GerenciarArquivos{
 		
 		if(!arquivo.exists()) {
 			System.out.println("Arquivo inexistente!");
-                        return; 
+                        return; // adicionei pq se não existir já sai da função
 		}
 		
                 try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
@@ -40,7 +40,7 @@ public class GerenciarArquivos{
                         }
                 
                 } catch (IOException erro) {
-                        System.out.println("Erro ao ler o arquivo: " + erro.getMessage());
+                        System.out.println("\nErro ao ler o arquivo: " + erro.getMessage());
                 }
 	}
 
