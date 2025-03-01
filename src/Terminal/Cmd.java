@@ -1,12 +1,11 @@
 package Terminal;
 
 import DirectoryManager.GerenciaDiretorio;
-
 import FileManager.GerenciarArquivos;
+import CommandHandler.Comando;
 
 import java.io.File;
 
-import CommandHandler.Comando;
 
 public class Cmd {
 	
@@ -221,17 +220,28 @@ public class Cmd {
 
         }
 	
-    public static Runnable Echo() {
+        public static Runnable Echo() {
     	
-    	String[] separacao = Comando.pegaComando(entrada);
-		String texto = separacao[1];
-		String nome = separacao[2];
-		return null;
-    	
-    }
+                String[] separacao = Comando.pegaComando(entrada);
+                String texto = separacao[1];
+                String arquivo = separacao[2];
+
+                if(texto == null){
+                        texto = "";
+                }
+
+                if(!GerenciarArquivos.escreverArquivo(texto, arquivo)){
+                        System.out.println("Não foi possível escrever no arquivo");
+                        
+                        return null;
+                }                
+
+                return null;
+
+        }
     
-    public static Runnable History() {
-		return null;
+        public static Runnable History() {
+                return null;
     	
-    }
+        }
 }
