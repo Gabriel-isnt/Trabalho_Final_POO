@@ -32,14 +32,14 @@ public class Main {
         // Corpo do loop
         do {
         	// Para evitar espaço desnecessario no inicio.
-        	if(!space) {
+             if(!space) {
         		System.out.printf("JavaComand>> ");
         		space = true;
         	}else {
         		System.out.printf("\n\nJavaComand>> ");
         	}
-            entrada = sc.nextLine();
 
+            entrada = sc.nextLine();
             Cmd.armazenamento(entrada);
 
             String[] entradaSeparada = Comando.pegaComando(entrada);

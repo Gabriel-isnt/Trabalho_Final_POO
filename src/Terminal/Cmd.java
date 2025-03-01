@@ -1,14 +1,13 @@
 package Terminal;
 
 import DirectoryManager.GerenciaDiretorio;
-
 import FileManager.GerenciarArquivos;
+import CommandHandler.Comando;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import CommandHandler.Comando;
 
 public class Cmd {
 	
@@ -215,7 +214,7 @@ public class Cmd {
 
 
 
-	public static Runnable Cat() {
+	   public static Runnable Cat() {
 				
                 String[] separacao = Comando.pegaComando(entrada);
                 String nome = separacao[1];
@@ -225,26 +224,39 @@ public class Cmd {
 
         }
 	
-    public static Runnable Echo() {
+        public static Runnable Echo() {
     	
-    	String[] separacao = Comando.pegaComando(entrada);
-		String texto = separacao[1];
-		String nome = separacao[2];
-		return null;
-    	
-    }
+                String[] separacao = Comando.pegaComando(entrada);
+                String texto = separacao[1];
+                String arquivo = separacao[2];
+
+                if(texto == null){
+                        texto = "";
+                }
+
+                if(!GerenciarArquivos.escreverArquivo(texto, arquivo)){
+                        System.out.println("Não foi possível escrever no arquivo");
+                        
+                        return null;
+                }                
+
+                return null;
+
+        }
     
-    public static Runnable History() {
-    	for(String comando : historico) {
-    		
-    		System.out.println("\n- " + comando);
-    	}
-		return null;
+        public static Runnable History() {
+        	for(String comando : historico) {
+        		System.out.printf("\n- " + comando);
+        	}
+            return null;
     	
-    }
+
+        }
     
-    public static Runnable Exit() {
-		return null;
-    	
-    }
+	    public static Runnable Exit() {
+			return null;
+	    	
+	    }
+
 }
+
