@@ -242,4 +242,9 @@ public class Cmd {
 		return null;
     	
     }
+    
+    public static Runnable Exit() {
+		return null;
+    	
+    }
 }

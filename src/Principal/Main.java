@@ -22,6 +22,7 @@ public class Main {
         comandos.put("cat", Cmd::Cat);
         comandos.put("echo", Cmd::Echo);
         comandos.put("history", Cmd::History);
+        comandos.put("exit", Cmd::Exit);
 
         // Inicialização do Scanner
         Scanner sc = new Scanner(System.in);
@@ -44,6 +45,7 @@ public class Main {
             String[] entradaSeparada = Comando.pegaComando(entrada);
             
             if (entradaSeparada.length == 0 || entradaSeparada[0].isEmpty() || !comandos.containsKey(entradaSeparada[0])) {
+                	
                 System.out.println("\nDigite um comando válido!\n- pwd\n- ls\n- cd\n- mkdir\n- touch\n- rm\n- cat\n- echo\n- history\n- exit");
                 continue;
             }
