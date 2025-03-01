@@ -26,24 +26,26 @@ public class Main {
         // Inicialização do Scanner
         Scanner sc = new Scanner(System.in);
         String entrada;
+        boolean space = false;
 
         // Corpo do loop
         do {
-            System.out.printf("\nJavaComand>> ");
-            
+        	// Para evitar espaço desnecessario no inicio.
+        	if(!space) {
+        		System.out.printf("JavaComand>> ");
+        		space = true;
+        	}else {
+        		System.out.printf("\n\nJavaComand>> ");
+        	}
             entrada = sc.nextLine();
 
             Cmd.armazenamento(entrada);
 
             String[] entradaSeparada = Comando.pegaComando(entrada);
             
-            if (entradaSeparada.length == 0 || entradaSeparada[0].isEmpty()) {
+            if (entradaSeparada.length == 0 || entradaSeparada[0].isEmpty() || !comandos.containsKey(entradaSeparada[0])) {
                 System.out.println("\nDigite um comando válido!\n- pwd\n- ls\n- cd\n- mkdir\n- touch\n- rm\n- cat\n- echo\n- history\n- exit");
                 continue;
-            }
-            if (!comandos.containsKey(entradaSeparada[0])) {
-            	System.out.println("\nDigite um comando válido!\n- pwd\n- ls\n- cd\n- mkdir\n- touch\n- rm\n- cat\n- echo\n- history\n- exit");
-            	continue;
             }
             Runnable comando = comandos.get(entradaSeparada[0]);
             if (comando != null) {
