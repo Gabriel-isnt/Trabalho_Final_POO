@@ -12,11 +12,11 @@ Passo 2: Você deve escrever um dos seguintes comandos no terminal ->
 * `touch <arquivo>` → Cria um novo arquivo vazio. 
 * `rm <arquivo/diretório>` → Remove um arquivo ou diretório. 
 * `cat <arquivo>` → Exibe o conteúdo de um arquivo. 
-* `echo <texto> <arquivo>`→ Escreve texto em um arquivo. 
+* `echo <texto> > arquivo`→ Escreve texto em um arquivo. 
 * `history` → Mostra o histórico de comandos digitados. 
 * `exit` → Encerra o programa. 
 
-Obs: É de absoluta necessidade que os sinais "<>" existam como no exemplo a cima caso algum texto ou caracter se aplique a função, já que ele sera reconhecido somente atraves deles.
+Obs: É de absoluta necessidade que os sinais "<>" e ">" existam como no exemplo a cima caso algum texto ou caracter se aplique a função, já que ele sera reconhecido somente atraves deles.
 Mas não se preocupe, caso a entrada sejá invalida, você será informado.
 
 Passo 4: Caso queira encerrar o programa, digite "exit" e o sistem o redirecionara novamente ao código.
