@@ -22,6 +22,7 @@ public class Main {
         comandos.put("cat", Cmd::Cat);
         comandos.put("echo", Cmd::Echo);
         comandos.put("history", Cmd::History);
+        comandos.put("exit", Cmd::Exit);
 
         // Inicialização do Scanner
         Scanner sc = new Scanner(System.in);
@@ -31,38 +32,27 @@ public class Main {
         // Corpo do loop
         do {
         	// Para evitar espaço desnecessario no inicio.
-                if(!space) {
+             if(!space) {
         		System.out.printf("JavaComand>> ");
         		space = true;
         	}else {
         		System.out.printf("\n\nJavaComand>> ");
         	}
 
-                entrada = sc.nextLine();
+            entrada = sc.nextLine();
+            Cmd.armazenamento(entrada);
 
-                Cmd.armazenamento(entrada);
-
-                String[] entradaSeparada = Comando.pegaComando(entrada);
-
-
-                if (entradaSeparada.length == 0 || entradaSeparada[0].isEmpty()) {
-                        System.out.println("\nDigite um comando válido!\n- pwd\n- ls\n- cd\n- mkdir\n- touch\n- rm\n- cat\n- echo\n- history\n- exit");
-                        continue;
-                }
-
-                if(entradaSeparada[0].equals("exit")){
-                        break;
-                } 
-
-                if(!comandos.containsKey(entradaSeparada[0])){
-                        System.out.println("\nDigite um comando válido!\n- pwd\n- ls\n- cd\n- mkdir\n- touch\n- rm\n- cat\n- echo\n- history\n- exit");
-                        continue;
-                }
-
-                Runnable comando = comandos.get(entradaSeparada[0]);
-                if (comando != null) {
-                        comando.run();
-                }
+            String[] entradaSeparada = Comando.pegaComando(entrada);
+            
+            if (entradaSeparada.length == 0 || entradaSeparada[0].isEmpty() || !comandos.containsKey(entradaSeparada[0])) {
+                	
+                System.out.println("\nDigite um comando válido!\n- pwd\n- ls\n- cd\n- mkdir\n- touch\n- rm\n- cat\n- echo\n- history\n- exit");
+                continue;
+            }
+            Runnable comando = comandos.get(entradaSeparada[0]);
+            if (comando != null) {
+                comando.run();
+            }
 
         } while (!entrada.equals("exit"));
 
