@@ -121,7 +121,13 @@ public class Cmd {
         	String[] separacao = Comando.pegaComando(entrada);
     		String nome = separacao[1];
         	
-        	File novoDiretorio = new File (nome);
+
+                if(nome == null || nome.isEmpty()){
+                        System.out.println("Nenhum nome para diretório passado");
+                        return null;
+                }
+
+        	File novoDiretorio = new File(nome);
         	
                 if (novoDiretorio.exists()) {
                         System.out.println("\nErro: O diretorio ja existe!");
@@ -142,6 +148,11 @@ public class Cmd {
         	
         	String[] separacao = Comando.pegaComando(entrada);
     		String nome = separacao[1];
+
+                if(nome == null || nome.isEmpty()){
+                        System.out.println("nenhum nome para o arquivo passado");
+                        return null;
+                }
         	
         	GerenciarArquivos.criarArquivo(nome);
                 return null;
@@ -222,6 +233,18 @@ public class Cmd {
 				
                 String[] separacao = Comando.pegaComando(entrada);
                 String nome = separacao[1];
+
+                if(nome == null || nome.isEmpty()){
+                        System.out.println("Nenhum arquivo passado");
+                        return null;
+                }
+
+                File arquivo = new File(nome);
+
+                if(!arquivo.isFile() || !arquivo.exists()){
+                        System.out.println("Arquivo passado não existe");
+                        return null;
+                }
                 
                 GerenciarArquivos.lerArquivo(nome);
                 return null;
