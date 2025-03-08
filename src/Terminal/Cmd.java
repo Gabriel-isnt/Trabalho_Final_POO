@@ -39,7 +39,11 @@ public class Cmd {
                 }                
 
                 for(File arquivo : arquivos){
-                        System.out.printf("\nArquivo: %s ", arquivo.getName());
+                	if(arquivo.isDirectory()) {
+                		System.out.printf("\nDiretorio: %s ", arquivo.getName());	
+                	}else {
+                		System.out.printf("\nArquivo: %s ", arquivo.getName());
+                	}
                 }
 				return null;               
         }
