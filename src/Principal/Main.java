@@ -37,7 +37,6 @@ public class Main {
         }
 
 
-
         // Lista de comandos aceitos.
         comandos.put("pwd", Cmd::Pwd);
         comandos.put("ls", Cmd::Ls);

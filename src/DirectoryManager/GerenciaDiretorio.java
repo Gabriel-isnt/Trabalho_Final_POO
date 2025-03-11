@@ -1,19 +1,10 @@
 package DirectoryManager;
 
+import DirectoryManager.DirectoryManager;
+
 import java.io.File;
 
-public class GerenciaDiretorio{
-
-        public static boolean mudaDiretorio(File novoDiretorio){
-                
-                if(!isDiretorio(novoDiretorio)){
-                        System.out.println("\nDiretório passado não é um diretório");
-                        return false;
-                }
-
-                System.setProperty("user.dir", novoDiretorio.getAbsolutePath());
-                return true;
-        }
+public class GerenciaDiretorio extends DirectoryManager{
 
         public static boolean isDiretorio(File diretorio){
                 return diretorio.isDirectory();
