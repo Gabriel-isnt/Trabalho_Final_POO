@@ -1,0 +1,5 @@
+ls
+cd diretorio teste
+ls
+echo teste > arquivo teste
+cat arquivo teste

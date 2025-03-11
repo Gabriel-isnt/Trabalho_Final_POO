@@ -24,10 +24,12 @@ public class Comando {
                 String parte1 = null;  // antes do <
                 String parte2 = null;  // entre o <>
                 String parte3 = null;  // depois do segundo > 
+                
 
                 // indexof retorna -1 se não encontrar
-                int comecaParte2  = comando.indexOf('<');
-                int terminaParte2 = comando.indexOf('>', comecaParte2 + 1);
+                int comecaParte2  = comando.indexOf(' ');
+                
+                int terminaParte2 = (comando.indexOf(' ', comecaParte2 + 1));
                 int comecaParte3  = comando.indexOf('>', terminaParte2 + 1);
 
                 // caso só tenha 1 comando
@@ -40,7 +42,10 @@ public class Comando {
                 parte1 = comando.substring(0, comecaParte2).trim();
 
                 if(terminaParte2 != -1){
-                        parte2 = comando.substring(comecaParte2 + 1, terminaParte2).trim();
+                	if(comecaParte3 == -1) {
+                		parte2 = comando.substring(comecaParte2 + 1).trim();	
+                	}else
+                		parte2 = comando.substring(comecaParte2 + 1, comecaParte3).trim();
                 }
 
                 if(comecaParte3 != -1){
