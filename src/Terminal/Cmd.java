@@ -3,14 +3,21 @@ package Terminal;
 import DirectoryManager.GerenciaDiretorio;
 import FileManager.GerenciarArquivos;
 import CommandHandler.Comando;
+import Principal.Main;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class Cmd {
 	
+
+
+
 	private static String entrada;
 	private static List<String> historico = new ArrayList<>();
 	
@@ -272,10 +279,26 @@ public class Cmd {
         }
     
         public static Runnable History() {
-        	for(String comando : historico) {
-        		System.out.printf("\n- " + comando);
-        	}
-            return null;
+
+                File historico = new File(Main.caminhoArquivo);
+                
+                if (!historico.exists()) {
+                        System.out.println("Arquivo de histórico não encontrado.");
+                        return null;
+                }
+                
+                try (BufferedReader reader = new BufferedReader(new FileReader(historico))) {
+                        String linha;
+
+                        while ((linha = reader.readLine()) != null) {
+                                System.out.println("- " + linha);
+                        }
+
+                } catch (IOException e) {
+                        System.out.printf("Erro ao ler o arquivo de histórico: %s%n", e.getMessage());
+                }
+
+                return null;
     	
 
         }

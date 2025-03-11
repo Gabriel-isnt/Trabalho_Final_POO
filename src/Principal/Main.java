@@ -2,15 +2,41 @@ package Principal;
 
 import Terminal.Cmd;
 import CommandHandler.Comando;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+
 
 public class Main {
     
     private static Map<String, Runnable> comandos = new HashMap<>();
-    
+    public static String caminhoArquivo;
+
     public static void main(String[] args) {
+
+        // criando arquivo txt para salvar o histórico
+        String dirAtual = System.getProperty("user.dir");
+        caminhoArquivo = dirAtual + File.separator + "historico.txt";
+        File historico = new File(caminhoArquivo);
+
+        try{
+                if(!historico.exists()){
+                        historico.createNewFile();
+                }
+
+                try(FileWriter escreve = new FileWriter(historico, false)){
+                        escreve.write("");
+                }
+
+        } catch(IOException e){
+                System.out.printf("Erro ao criar ou limpar o arquivo: %s", e.getMessage());
+        }
+
+
 
         // Lista de comandos aceitos.
         comandos.put("pwd", Cmd::Pwd);
@@ -29,6 +55,7 @@ public class Main {
         String entrada;
         boolean space = false;
 
+
         // Corpo do loop
         do {
         	// Para evitar espaço desnecessario no inicio.
@@ -42,6 +69,15 @@ public class Main {
             entrada = sc.nextLine();
             Cmd.armazenamento(entrada);
 
+            // escrevendo no histórico
+            try (FileWriter writer = new FileWriter(historico, true)) {
+                writer.write(entrada + "\n");
+
+            } catch (IOException e) {
+                System.out.printf("Erro ao escrever no arquivo de histórico: %s%n", e.getMessage());
+            }
+
+            // tratando para pegar os argumentos
             String[] entradaSeparada = Comando.pegaComando(entrada);
             
             if (entradaSeparada.length == 0 || entradaSeparada[0].isEmpty() || !comandos.containsKey(entradaSeparada[0])) {

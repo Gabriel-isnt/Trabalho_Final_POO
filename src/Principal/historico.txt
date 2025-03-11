@@ -1,0 +1,4 @@
+history <adfaf>
+pwd affweawrg
+history
+exit

@@ -1,6 +1,6 @@
 package CommandHandler;
 
-public class Comando{
+public class Comando {
 
         private static String trataComando(String comando){
                
